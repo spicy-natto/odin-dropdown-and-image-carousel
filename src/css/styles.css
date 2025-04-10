@@ -92,6 +92,10 @@ textarea:not([rows]) {
 }
 
 /* Custom CSS */
+* {
+  /* border: 1px solid red; */
+}
+
 .dropdown {
   position: absolute;
   display: none;
@@ -101,4 +105,71 @@ textarea:not([rows]) {
 
 .dropdown > button {
   min-width: 100%;
+}
+
+.carousel {
+  position: relative;
+  width: 30rem;
+  height: 20rem;
+  background: black;
+  display: flex;
+}
+
+.carousel .display-image {
+  flex: 1;
+  object-fit: contain;
+}
+
+.carousel .nav-circles {
+  position: absolute;
+  z-index: 3;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  opacity: 0;
+}
+
+.carousel button {
+  background: none;
+  border: none;
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 50%;
+  opacity: 0;
+}
+
+.carousel:hover button,
+.carousel:hover .nav-circles {
+  opacity: 0.7;
+  transition: 1s;
+}
+
+.carousel button:active {
+  opacity: 1;
+  transform: scale(1.1);
+  transition: none;
+}
+
+.back-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  min-width: 4rem;
+}
+
+.back-arrow {
+  left: 0.3rem;
+}
+
+.next-arrow {
+  right: 0.3rem;
 }
