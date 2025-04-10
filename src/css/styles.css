@@ -129,6 +129,20 @@ textarea:not([rows]) {
   opacity: 0;
 }
 
+.nav-circles > input[type="radio"] {
+  appearance: none;
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 0.8rem;
+  background: #fffafa;
+  margin: 0 .5rem;
+}
+
+.nav-circles > input[type="radio"]:checked {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
 .carousel button {
   background: none;
   border: none;
@@ -141,13 +155,12 @@ textarea:not([rows]) {
 
 .carousel:hover button,
 .carousel:hover .nav-circles {
-  opacity: 0.7;
+  opacity: 0.8;
   transition: 1s;
 }
 
 .carousel button:active {
   opacity: 1;
-  transform: scale(1.01);
   transform-origin: center;
   transition: none;
 }
