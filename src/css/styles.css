@@ -147,7 +147,8 @@ textarea:not([rows]) {
 
 .carousel button:active {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.01);
+  transform-origin: center;
   transition: none;
 }
 
@@ -168,6 +169,8 @@ textarea:not([rows]) {
 
 .back-arrow {
   left: 0.3rem;
+  transform: scale(-1, 1) translate(0, -50%);
+  transform-origin: center;
 }
 
 .next-arrow {
