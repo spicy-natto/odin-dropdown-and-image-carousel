@@ -161,7 +161,6 @@ textarea:not([rows]) {
 
 .carousel button:active {
   opacity: 1;
-  transform-origin: center;
   transition: none;
 }
 
@@ -177,7 +176,7 @@ textarea:not([rows]) {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  min-width: 4rem;
+  min-width: 4.5rem;
 }
 
 .back-arrow {
