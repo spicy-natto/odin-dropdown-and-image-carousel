@@ -1,44 +1,51 @@
-import deer from "../images/deer.jpg";
-import funnyCow from "../images/funny-cow-picture.jpg";
-import lake from "../images/lake.jpg";
-import path from "../images/path.jpg";
-
-const imagesWithAltText = [
-  { image: deer, altText: "Deer" },
-  { image: funnyCow, altText: "Funny Cow" },
-  { image: lake, altText: "lake" },
-  { image: path, altText: "path" },
-];
-
 class Carousel {
-  carouselDiv = document.getElementById("carousel");
-  navCirclesDiv = document.getElementById("nav-circles");
-  currIndex = 0;
-  imageDomArray;
-  navCircleDomArray;
-  numberOfImages;
+  #imageWrapperDiv = document.getElementById("image-wrapper");
+  #navCirclesDiv = document.getElementById("nav-circles");
+  #backButton = document.getElementById("back-button");
+  #nextButton = document.getElementById("next-button");
+  #currIndex = 0;
+  #imageDomArray;
+  #navCircleDomArray;
+  #numberOfImages;
 
   constructor(imageAltMapping) {
     this.imageAltMapping = imageAltMapping;
-    this.numberOfImages = imageAltMapping.length;
+    this.#numberOfImages = imageAltMapping.length;
   }
 
-  createImgElementArray() {
-    this.imageDomArray = this.imageAltMapping.map((imageAlt) =>
-      this.#createImgElement(imageAlt)
+  init() {
+    this.#createImgElementArray();
+    this.#createNavElementArray();
+    this.#setCurrentImage();
+    this.#addChildrenToParent(this.#navCirclesDiv, this.#navCircleDomArray);
+  }
+
+  #addChildrenToParent(parent, elementsArray) {
+    elementsArray.forEach((element) => parent.appendChild(element));
+  };
+
+  #setCurrentImage() {
+    this.#imageWrapperDiv.innerHTML = "";
+    this.#imageWrapperDiv.appendChild(this.#imageDomArray[this.#currIndex]);
+  }
+
+  #createImgElementArray() {
+    this.#imageDomArray = this.imageAltMapping.map((imageAlt, index) =>
+      this.#createImgElement(imageAlt, index)
     );
-    console.log(this.imageDomArray);
+    console.log(this.#imageDomArray);
   }
 
-  createNavElementArray() {
-    this.navCircleDomArray = this.imageAltMapping.map((imageAlt, index) =>
+  #createNavElementArray() {
+    this.#navCircleDomArray = this.imageAltMapping.map((imageAlt, index) =>
       this.#createNavCircleElement({ id: imageAlt.altText, value: index })
     );
-    console.log(this.navCircleDomArray);
+    console.log(this.#navCircleDomArray);
   }
 
-  #createImgElement({ image, altText }) {
+  #createImgElement({ image, altText}, zIndex) {
     const img = document.createElement("img");
+    img.classList.add("display-image");
     img.setAttribute("src", image);
     img.setAttribute("alt", altText);
     return img;
@@ -54,4 +61,4 @@ class Carousel {
   }
 }
 
-export default new Carousel(imagesWithAltText);
+export default Carousel;

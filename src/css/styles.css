@@ -115,9 +115,15 @@ textarea:not([rows]) {
   display: flex;
 }
 
-.carousel .display-image {
+#image-wrapper {
   flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel .display-image {
   object-fit: contain;
+  flex: 1;
 }
 
 .carousel .nav-circles {
