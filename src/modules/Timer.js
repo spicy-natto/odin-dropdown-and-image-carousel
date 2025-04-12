@@ -10,18 +10,23 @@ class Timer {
 
     #countdown(callback) {
         if (this.#secondsLeft === 0 ) {
-            this.callback();
+            callback();
+            this.reset();
         } else {
             this.#secondsLeft--;
         }
     }
 
     start(callback) {
-        this.#interval = setInterval(this.#countdown(callback), 1000);
+        this.#interval = setInterval(() => this.#countdown(callback), 1000);
     }
 
     stop() {
         clearInterval(this.#interval);
+    }
+
+    reset() {
+        this.#secondsLeft = this.#timerStart;
     }
 }
 
