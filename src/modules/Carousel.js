@@ -82,6 +82,12 @@ class Carousel {
     radioButton.setAttribute("name", "image-select");
     radioButton.setAttribute("id", id);
     radioButton.setAttribute("value", value);
+
+    radioButton.addEventListener("click", () => {
+      this.#currIndex = value;
+      this.#setCurrentImage();
+      this.#setCurrNavCircle();
+    })
     return radioButton;
   }
 }
