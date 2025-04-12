@@ -1,3 +1,5 @@
+import Timer from "./Timer.js";
+
 class Carousel {
   #imageWrapperDiv = document.getElementById("image-wrapper");
   #navCirclesDiv = document.getElementById("nav-circles");
@@ -7,6 +9,7 @@ class Carousel {
   #imageDomArray;
   #navCircleDomArray;
   #numberOfImages;
+  timer = new Timer(5);
 
   constructor(imageAltMapping) {
     this.imageAltMapping = imageAltMapping;
@@ -21,10 +24,11 @@ class Carousel {
     this.#addChildrenToParent(this.#navCirclesDiv, this.#navCircleDomArray);
     this.#backButton.addEventListener("click", this.#goBack.bind(this));
     this.#nextButton.addEventListener("click", this.#goForward.bind(this));
+    this.timer.start(this.#goForward.bind(this));
   }
 
   #goBack() {
-    if ((this.#currIndex - 1) < 0) {
+    if (this.#currIndex - 1 < 0) {
       this.#currIndex = this.#numberOfImages - 1;
     } else {
       this.#currIndex = (this.#currIndex - 1) % this.#numberOfImages;
@@ -32,12 +36,14 @@ class Carousel {
     console.log(this.#currIndex);
     this.#setCurrentImage();
     this.#setCurrNavCircle();
+    this.timer.reset();
   }
 
   #goForward() {
     this.#currIndex = (this.#currIndex + 1) % this.#numberOfImages;
     this.#setCurrentImage();
     this.#setCurrNavCircle();
+    this.timer.reset();
   }
 
   #addChildrenToParent(parent, elementsArray) {
@@ -87,7 +93,8 @@ class Carousel {
       this.#currIndex = value;
       this.#setCurrentImage();
       this.#setCurrNavCircle();
-    })
+      this.timer.reset();
+    });
     return radioButton;
   }
 }
