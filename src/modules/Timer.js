@@ -1,25 +1,23 @@
 class Timer {
-    #callback;
     #timerStart;
     #secondsLeft;
     #interval;
 
-    constructor(callback, timerStart = 5) {
-        this.#callback = callback;
+    constructor(timerStart = 5) {
         this.#timerStart = timerStart;
         this.#secondsLeft = this.#timerStart;
     }
 
-    #countdown() {
+    #countdown(callback) {
         if (this.#secondsLeft === 0 ) {
-            this.#callback();
+            this.callback();
         } else {
             this.#secondsLeft--;
         }
     }
 
-    start() {
-        this.#interval = setInterval(this.#countdown, 1000);
+    start(callback) {
+        this.#interval = setInterval(this.#countdown(callback), 1000);
     }
 
     stop() {
