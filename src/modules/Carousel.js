@@ -33,7 +33,6 @@ class Carousel {
     } else {
       this.#currIndex = (this.#currIndex - 1) % this.#numberOfImages;
     }
-    console.log(this.#currIndex);
     this.#setCurrentImage();
     this.#setCurrNavCircle();
     this.timer.reset();
